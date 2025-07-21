@@ -3,7 +3,7 @@
 #include "esphome/components/switch/switch.h"
 
 namespace esphome {
-namespace wifi_protocol {
+namespace wifi_protocol_switch {
 
 class WiFiProtocolComponent : public esphome::Component, public esphome::switch_::Switch {
  public:
@@ -11,5 +11,5 @@ class WiFiProtocolComponent : public esphome::Component, public esphome::switch_
   void write_state(bool state) override;
 };
 
-}  // namespace wifi_protocol
+}  // namespace wifi_protocol_switch
 }  // namespace esphome
