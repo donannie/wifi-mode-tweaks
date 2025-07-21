@@ -15,7 +15,12 @@ void WiFiProtocolComponent::setup() {
   } else {
     ESP_LOGW(TAG, "Failed to set Wi-Fi protocol: %d", result);
   }
-} 
+}
+
+void WiFiProtocolComponent::write_state(bool state) {
+  ESP_LOGI(TAG, "Dummy switch toggled: %s", state ? "ON" : "OFF");
+  publish_state(state);
+}
+
 }  // namespace wifi_protocol
 }  // namespace esphome
-
