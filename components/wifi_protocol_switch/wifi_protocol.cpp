@@ -3,7 +3,7 @@
 #include "esp_wifi.h"
 
 namespace esphome {
-namespace wifi_protocol {
+namespace wifi_protocol_switch {
 
 static const char *TAG = "wifi_protocol";
 
@@ -22,5 +22,5 @@ void WiFiProtocolComponent::write_state(bool state) {
   publish_state(state);
 }
 
-}  // namespace wifi_protocol
+}  // namespace wifi_protocol_switch
 }  // namespace esphome
