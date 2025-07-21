@@ -3,7 +3,7 @@ import esphome.config_validation as cv
 from esphome.const import CONF_ID
 
 wifi_protocol_ns = cg.esphome_ns.namespace("wifi_protocol")
-WiFiProtocolComponent = wifi_protocol_ns.class_("WiFiProtocolComponent", cg.Component)
+WiFiProtocolComponent = wifi_protocol_ns.class_("WiFiProtocolComponent", cg.Component, cg.Switch)
 
 CONFIG_SCHEMA = cv.Schema({
     cv.GenerateID(): cv.declare_id(WiFiProtocolComponent),
@@ -12,3 +12,4 @@ CONFIG_SCHEMA = cv.Schema({
 async def to_code(config):
     var = cg.new_Pvariable(config[CONF_ID])
     await cg.register_component(var, config)
+    await cg.register_switch(var, config)
