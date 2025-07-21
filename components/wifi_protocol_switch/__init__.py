@@ -1,12 +1,10 @@
 import esphome.codegen as cg
 import esphome.config_validation as cv
-from esphome.const import CONF_ID, CONF_NAME
-from esphome.components import switch  # ✅ Pull in switch behavior
+from esphome.const import CONF_ID
+from esphome.components import switch
 
 wifi_protocol_switch_ns = cg.esphome_ns.namespace("wifi_protocol_switch")
-
 WiFiProtocolComponent = wifi_protocol_switch_ns.class_(
-
     "WiFiProtocolComponent", cg.Component, switch.Switch
 )
 
