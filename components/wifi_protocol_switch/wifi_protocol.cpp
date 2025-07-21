@@ -1,26 +1,30 @@
 #include "wifi_protocol.h"
-#include "esphome/core/log.h"
-#include "esp_wifi.h"
+#include "esp_wifi.h"  // ✅ Required for esp_wifi_set_protocol()
 
 namespace esphome {
 namespace wifi_protocol_switch {
 
-static const char *TAG = "wifi_protocol";
-
 void WiFiProtocolComponent::setup() {
-  ESP_LOGI(TAG, "WiFiProtocolComponent initialized");
-  esp_err_t result = esp_wifi_set_protocol(WIFI_IF_STA, WIFI_PROTOCOL_11B | WIFI_PROTOCOL_11G);
-  if (result == ESP_OK) {
-    ESP_LOGI(TAG, "Successfully set Wi-Fi to b/g only");
-  } else {
-    ESP_LOGW(TAG, "Failed to set Wi-Fi protocol: %d", result);
-  }
+  // Optional: log current Wi-Fi mode or do something at startup
 }
 
 void WiFiProtocolComponent::write_state(bool state) {
-  ESP_LOGI(TAG, "Dummy switch toggled: %s", state ? "ON" : "OFF");
-  publish_state(state);
+  ESP_LOGI("wifi_protocol", "Dummy switch toggled: %s", state ? "ON" : "OFF");
+
+  wifi_interface_t iface = WIFI_IF_STA;
+
+  if (state) {
+    // ✅ Enable 802.11b/g only
+    esp_wifi_set_protocol(iface, WIFI_PROTOCOL_11B | WIFI_PROTOCOL_11G);
+  } else {
+    // 🔄 Reset to all protocols (b/g/n)
+    esp_wifi_set_protocol(iface, WIFI_PROTOCOL_11B | WIFI_PROTOCOL_11G | WIFI_PROTOCOL_11N);
+  }
+
+  // Update switch state in ESPHome
+  this->publish_state(state);
 }
 
 }  // namespace wifi_protocol_switch
 }  // namespace esphome
+
