@@ -15,7 +15,7 @@ void WiFiProtocolComponent::setup() {
   } else {
     ESP_LOGW(TAG, "Failed to set Wi-Fi protocol: %d", result);
   }
-
+} 
 }  // namespace wifi_protocol
 }  // namespace esphome
 
