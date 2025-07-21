@@ -5,7 +5,8 @@ from esphome.components import switch  # ✅ Pull in switch behavior
 
 wifi_protocol_switch_ns = cg.esphome_ns.namespace("wifi_protocol_switch")
 
-WiFiProtocolComponent = wifi_protocol_ns.class_(
+WiFiProtocolComponent = wifi_protocol_switch_ns.class_(
+
     "WiFiProtocolComponent", cg.Component, switch.Switch
 )
 
